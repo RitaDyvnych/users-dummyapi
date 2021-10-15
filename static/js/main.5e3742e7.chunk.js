@@ -1,2 +1,0 @@
-(this["webpackJsonpusers-dummyapi"]=this["webpackJsonpusers-dummyapi"]||[]).push([[0],{11:function(e,n,s){"use strict";s.r(n);var t=s(1),c=s.n(t),r=s(3),i=s.n(r),u=(s(8),s(9),s(0));var a=function(){return Object(u.jsx)("div",{className:"App",children:Object(u.jsx)("h1",{children:"Users"})})};i.a.render(Object(u.jsx)(c.a.StrictMode,{children:Object(u.jsx)(a,{})}),document.getElementById("root"))},8:function(e,n,s){},9:function(e,n,s){}},[[11,1,2]]]);
-//# sourceMappingURL=main.5e3742e7.chunk.js.map
