@@ -1,0 +1,6 @@
+{
+    "base_url" : "https://dummyapi.io/data/v1/",
+    "app_id": "6154537832884b1a024b2f3c",
+    "content_type": "application/json",
+    "limit": 10
+}
