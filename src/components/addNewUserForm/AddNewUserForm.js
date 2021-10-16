@@ -1,20 +1,47 @@
 import { Component } from "react";
 import style from "./addNewUserForm.module.css";
+import PropTypes from "prop-types";
 
 export default class Form extends Component {
   state = {
-    title: "",
+    title: "mr",
     firstName: "",
     lastName: "",
     email: "",
-    avatar: "",
+    picture: "",
+    user: null,
   };
 
-  handleSubmit = () => {};
-  handleChangeAllInputs = () => {};
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const { title, firstName, lastName, email, picture } = this.state;
+    const user = {
+      id: "",
+      title,
+      firstName,
+      lastName,
+      email,
+      picture,
+    };
+    this.setState({ user });
+    this.props.addNewUser(user);
+    this.resetform();
+    this.props.toggleModal();
+  };
+
+  handleChangeAllInputs = (e) => {
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value,
+    });
+  };
+
+  resetform = () => {
+    this.setState({ ...this.state });
+  };
 
   render() {
-    const { title, firstName, lastName, email, avatar } = this.state;
+    const { title, firstName, lastName, email, picture } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
         <p>New User's Info</p>
@@ -25,9 +52,6 @@ export default class Form extends Component {
           onChange={this.handleChangeAllInputs}
           // id={userTitle}
         >
-          <option value="" disabled>
-            ...
-          </option>
           <option value="mr">mr</option>
           <option value="mrs">mrs</option>
           <option value="ms">ms</option>
@@ -37,7 +61,7 @@ export default class Form extends Component {
         <input
           className={style.input}
           type="text"
-          // id={prodIdtitle}
+          // id={Idtitle}
           name="firstName"
           value={firstName}
           autoComplete="off"
@@ -51,7 +75,7 @@ export default class Form extends Component {
         <input
           className={style.input}
           type="text"
-          // id={prodIdtitle}
+          // id={Idtitle}
           name="lastName"
           value={lastName}
           autoComplete="off"
@@ -65,7 +89,7 @@ export default class Form extends Component {
         <input
           className={style.input}
           type="email"
-          // id={prodIdtitle}
+          // id={Idtitle}
           name="email"
           value={email}
           autoComplete="off"
@@ -79,13 +103,13 @@ export default class Form extends Component {
         <input
           className={style.input}
           type="url"
-          // id={prodIdtitle}
-          name="avatar"
-          value={avatar}
+          // id={Idtitle}
+          name="picture"
+          value={picture}
           autoComplete="off"
           placeholder="Avatar URL http(s)://example.com"
           aria-label="avatar url"
-          pattern="^(http|https)://\.(.*)"
+          pattern="http(s)?://.*"
           title="Please enter a valid url address"
           onChange={this.handleChangeAllInputs}
         />
@@ -96,3 +120,8 @@ export default class Form extends Component {
     );
   }
 }
+
+Form.propTypes = {
+  toggleModal: PropTypes.func.isRequired,
+  addNewUser: PropTypes.func.isRequired,
+};
