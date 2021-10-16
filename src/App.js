@@ -6,6 +6,7 @@ import Modal from "./components/modal/Modal";
 import Form from "./components/addNewUserForm/AddNewUserForm";
 import AddUserBtn from "./components/addUserBtn/AddUserBtn";
 import LoadMoreBtn from "./components/loadMoreBtn/LoadmoreBtn";
+import BackToTopBtn from "./components/backToTopBtn/backToTopBtn";
 
 const newUsersApiService = new UsersApiService();
 
@@ -80,6 +81,7 @@ class App extends Component {
           <UserList users={users} />
         </ul>
         <LoadMoreBtn handleClick={this.loadMore} />
+        <BackToTopBtn />
       </div>
     );
   }

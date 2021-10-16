@@ -1,0 +1,12 @@
+.backToTop {
+  position: fixed;
+  bottom: 10px;
+  right: 30px;
+  z-index: 40;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  background-color: rgba(40, 130, 182, 0.637);
+  cursor: pointer;
+}
