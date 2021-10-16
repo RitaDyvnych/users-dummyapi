@@ -24,7 +24,12 @@ export default class UsersApiService {
         "app-id": `${this.api_id}`,
       },
     };
-    return fetch(url, options).then((response) => response.json());
+    return fetch(url, options).then((response) => {
+      if (!response.ok) {
+        throw new Error(response.status);
+      }
+      return response.json();
+    });
   }
 
   createUser() {
@@ -37,6 +42,11 @@ export default class UsersApiService {
       body: JSON.stringify(this.user),
     };
     const url = `${this.base_url}user/create`;
-    return fetch(url, options).then((response) => response.json());
+    return fetch(url, options).then((response) => {
+      if (!response.ok) {
+        throw new Error(response.status);
+      }
+      return response.json();
+    });
   }
 }

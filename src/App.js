@@ -16,10 +16,14 @@ class App extends Component {
   };
 
   componentDidMount() {
-    newUsersApiService.getUsers().then((result) => {
-      this.setState({ users: result.data });
-      console.log(this.state.users);
-    });
+    newUsersApiService
+      .getUsers()
+      .then((result) => {
+        this.setState({ users: result.data });
+      })
+      .catch((error) => {
+        alert(`Ooops! Somethind went wrong \n${error.message}`);
+      });
   }
   toggleModal = () => {
     this.setState({ showModal: !this.state.showModal });
@@ -27,12 +31,16 @@ class App extends Component {
 
   addNewUser = (obj) => {
     const addNewUsersApiService = new UsersApiService(obj);
-    addNewUsersApiService.createUser().then((result) => {
-      console.log("post result:", result);
-      this.setState((prevState) => ({ users: [...prevState.users, result] }));
-      console.log("new users", result);
-      this.onPageScroll();
-    });
+    addNewUsersApiService
+      .createUser()
+      .then((result) => {
+        this.setState((prevState) => ({ users: [...prevState.users, result] }));
+        this.onPageScroll();
+        alert("New user was added successfully!");
+      })
+      .catch((error) => {
+        alert(`Ooops! Somethind went wrong \n${error.message}`);
+      });
   };
 
   loadMore = (e) => {
@@ -40,7 +48,9 @@ class App extends Component {
     newUsersApiService.getUsers().then((result) => {
       this.setState((prev) => ({
         users: [...prev.users, ...result.data],
-      }));
+      })).catch((error) => {
+        alert(`Ooops! Somethind went wrong \n${error.message}`);
+      });
       this.onPageScroll();
     });
   };
@@ -53,7 +63,7 @@ class App extends Component {
   }
 
   render() {
-    const { users, status } = this.state;
+    const { users } = this.state;
     return (
       <div className="App">
         <h1>Users from DummiApi</h1>
