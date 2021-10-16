@@ -44,9 +44,12 @@ export default class Form extends Component {
     const { title, firstName, lastName, email, picture } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
-        <p>New User's Info</p>
-        <label htmlFor={title}>Title</label>
+        <p className={style.title}>New User's Info</p>
+        <label htmlFor={title} className={style.label}>
+          Title
+        </label>
         <select
+          className={style.select}
           name="title"
           value={title}
           onChange={this.handleChangeAllInputs}

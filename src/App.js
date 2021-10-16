@@ -45,14 +45,17 @@ class App extends Component {
 
   loadMore = (e) => {
     newUsersApiService.pages = 1;
-    newUsersApiService.getUsers().then((result) => {
-      this.setState((prev) => ({
-        users: [...prev.users, ...result.data],
-      })).catch((error) => {
+    newUsersApiService
+      .getUsers()
+      .then((result) => {
+        this.setState((prev) => ({
+          users: [...prev.users, ...result.data],
+        }));
+        this.onPageScroll();
+      })
+      .catch((error) => {
         alert(`Ooops! Somethind went wrong \n${error.message}`);
       });
-      this.onPageScroll();
-    });
   };
 
   onPageScroll() {
@@ -66,14 +69,14 @@ class App extends Component {
     const { users } = this.state;
     return (
       <div className="App">
-        <h1>Users from DummiApi</h1>
+        <h1 className="title">Users from DummiApi</h1>
         <AddUserBtn toggleModal={this.toggleModal} />
         {this.state.showModal && (
           <Modal toggleModal={this.toggleModal}>
             <Form addNewUser={this.addNewUser} toggleModal={this.toggleModal} />
           </Modal>
         )}
-        <ul className="ImageGallery">
+        <ul className="imageGallery">
           <UserList users={users} />
         </ul>
         <LoadMoreBtn handleClick={this.loadMore} />

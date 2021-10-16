@@ -5,7 +5,11 @@ import PropTypes from "prop-types";
 export default class LoadMoreBtn extends Component {
   render() {
     return (
-      <button type="button" onClick={this.props.handleClick} className="Button">
+      <button
+        type="button"
+        onClick={this.props.handleClick}
+        className={style.button}
+      >
         Load more
       </button>
     );

@@ -6,8 +6,9 @@
   height: 100vh;
   background-color: rgba(165, 159, 159, 0.5);
 }
+
 .content {
-  padding: 50px;
+  padding: 40px;
   background-color: white;
   position: absolute;
   top: 50%;
